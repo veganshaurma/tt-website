@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uniform Thickness - Forko IT</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 60px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+      font-size: 36px;
+    }
+    .subtitle {
+      text-align: center;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 50px;
+      font-size: 18px;
+    }
+    .variant {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      text-align: center;
+      border: 4px solid #10b981;
+    }
+    .variant h2 {
+      font-size: 20px;
+      margin-bottom: 30px;
+      color: #0ea5e9;
+      font-weight: 600;
+    }
+    .icon-display {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+      padding: 50px;
+      border-radius: 16px;
+      margin-bottom: 30px;
+    }
+    .icon-large {
+      width: 200px;
+      height: 200px;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+      margin: 0 auto;
+      display: block;
+    }
+    .sizes {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      padding: 25px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      margin-top: 25px;
+    }
+    .size-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .size-box img {
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+    }
+    .size-label {
+      font-size: 13px;
+      color: #666;
+      font-weight: 600;
+    }
+    .badge {
+      display: inline-block;
+      background: #10b981;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .note {
+      margin-top: 20px;
+      padding: 15px;
+      background: #ecfdf5;
+      border-radius: 8px;
+      color: #065f46;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ F4: Одинаковая толщина</h1>
+    <p class="subtitle">Все линии буквы F теперь одинаковой ширины</p>
+    
+    <div class="variant">
+      <h2>F4: Технологичный со скруглением</h2>
+      <div class="icon-display">
+        <img src="f4-tech-rounded-uniform.svg" alt="F4 Uniform" class="icon-large">
+      </div>
+      <div class="note">
+        ✓ Вертикальная линия: 4px<br>
+        ✓ Верхняя горизонталь: 4px<br>
+        ✓ Средняя горизонталь: 4px<br>
+        ✓ Все углы скруглены (radius: 2px)
+      </div>
+      <div class="sizes">
+        <div class="size-box">
+          <img src="f4-tech-rounded-uniform.svg" alt="64px" style="width: 64px; height: 64px;">
+          <span class="size-label">64px</span>
+        </div>
+        <div class="size-box">
+          <img src="f4-tech-rounded-uniform.svg" alt="32px" style="width: 32px; height: 32px;">
+          <span class="size-label">32px</span>
+        </div>
+        <div class="size-box">
+          <img src="f4-tech-rounded-uniform.svg" alt="16px" style="width: 16px; height: 16px;">
+          <span class="size-label">16px</span>
+        </div>
+      </div>
+      <span class="badge">Готово ✓</span>
+    </div>
+  </div>
+</body>
+</html>
