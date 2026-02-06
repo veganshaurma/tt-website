@@ -11,13 +11,13 @@ const _inter = Inter({ subsets: ["latin", "cyrillic"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Forko IT — Надёжные IT-решения для бизнеса',
+  title: 'Dewata Global Group — Надёжные IT-решения для бизнеса',
   description: 'Разрабатываем веб- и мобильные приложения, Telegram-ботов, консультируем по IT-стратегии и обеспечиваем инфраструктуру для компаний в России, СНГ, Азии и Европе.',
   generator: 'v0.app',
   keywords: ['IT-решения', 'разработка приложений', 'веб-разработка', 'мобильная разработка', 'IT-консалтинг', 'Telegram боты'],
-  authors: [{ name: 'Forko IT' }],
+  authors: [{ name: 'Dewata Global Group' }],
   openGraph: {
-    title: 'Forko IT — Надёжные IT-решения для бизнеса',
+    title: 'Dewata Global Group — Надёжные IT-решения для бизнеса',
     description: 'Разрабатываем веб- и мобильные приложения, Telegram-ботов, консультируем по IT-стратегии и обеспечиваем инфраструктуру.',
     type: 'website',
     locale: 'ru_RU',

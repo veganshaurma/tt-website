@@ -17,8 +17,7 @@ const values = [
 
 export default function AboutPage() {
   const { t } = useI18n()
-  const [hkDetailsOpen, setHkDetailsOpen] = useState(false)
-  const [kgDetailsOpen, setKgDetailsOpen] = useState(false)
+  const [detailsOpen, setDetailsOpen] = useState(false)
 
   return (
     <>
@@ -123,8 +122,8 @@ export default function AboutPage() {
           subtitle={t("about.legal.subtitle")}
         />
         
-        <div className="grid gap-6 md:grid-cols-2">
-          {/* Hong Kong */}
+        <div className="mx-auto max-w-2xl">
+          {/* Bali */}
           <Card className="border-border/50">
             <CardHeader>
               <div className="flex items-center gap-3">
@@ -132,31 +131,25 @@ export default function AboutPage() {
                   <Building2 className="h-5 w-5" />
                 </div>
                 <div>
-                  <CardTitle className="text-lg">{t("about.legal.hongKong.title")}</CardTitle>
-                  <p className="text-sm text-muted-foreground">{t("about.legal.hongKong.company")}</p>
+                  <CardTitle className="text-lg">{t("about.legal.bali.title")}</CardTitle>
+                  <p className="text-sm text-muted-foreground">{t("about.legal.bali.company")}</p>
                 </div>
               </div>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex items-start gap-3 text-sm">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                <span className="text-muted-foreground">{t("about.legal.hongKong.address")}</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <Phone className="h-4 w-4 shrink-0 text-muted-foreground" />
-                <a href="tel:+996700707739" className="text-muted-foreground hover:text-foreground">
-                  +996-700-707-739
-                </a>
+                <span className="text-muted-foreground">{t("about.legal.bali.address")}</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="h-4 w-4 shrink-0 text-muted-foreground" />
-                <a href="mailto:help@forko-it.com" className="text-muted-foreground hover:text-foreground">
-                  help@forko-it.com
+                <a href="mailto:info@dewata-global.com" className="text-muted-foreground hover:text-foreground">
+                  info@dewata-global.com
                 </a>
               </div>
 
               {/* Collapsible Bank Details */}
-              <Collapsible open={hkDetailsOpen} onOpenChange={setHkDetailsOpen}>
+              <Collapsible open={detailsOpen} onOpenChange={setDetailsOpen}>
                 <CollapsibleTrigger asChild>
                   <Button variant="ghost" size="sm" className="w-full justify-between mt-2">
                     {t("about.legal.details")}
@@ -165,75 +158,41 @@ export default function AboutPage() {
                 </CollapsibleTrigger>
                 <CollapsibleContent className="mt-3 space-y-2 rounded-lg bg-muted/50 p-4 text-sm">
                   <div>
+                    <span className="font-medium text-foreground">{t("about.legal.director")}:</span>
+                    <span className="ml-2 text-muted-foreground">{t("about.legal.bali.directorName")}</span>
+                  </div>
+                  <div className="pt-2 border-t border-border">
                     <span className="font-medium text-foreground">{t("about.legal.bank")}:</span>
                     <span className="ml-2 text-muted-foreground">{t("about.legal.bankName")}</span>
+                  </div>
+                  <div>
+                    <span className="font-medium text-foreground">{t("about.legal.bankBranch")}:</span>
+                    <span className="ml-2 text-muted-foreground">{t("about.legal.bankBranchValue")}</span>
                   </div>
                   <div>
                     <span className="font-medium text-foreground">{t("about.legal.bankAddress")}:</span>
                     <span className="ml-2 text-muted-foreground">{t("about.legal.bankAddressValue")}</span>
                   </div>
                   <div>
-                    <span className="font-medium text-foreground">{t("about.legal.bic")}:</span>
-                    <span className="ml-2 font-mono text-muted-foreground">044525411</span>
+                    <span className="font-medium text-foreground">{t("about.legal.bankClearingCode")}:</span>
+                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.bankClearingCodeValue")}</span>
                   </div>
                   <div>
-                    <span className="font-medium text-foreground">{t("about.legal.corrAccount")}:</span>
-                    <span className="ml-2 font-mono text-muted-foreground">30101810145250000411</span>
+                    <span className="font-medium text-foreground">{t("about.legal.swiftCode")}:</span>
+                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.swiftCodeValue")}</span>
+                  </div>
+                  <div className="pt-2 border-t border-border">
+                    <span className="font-medium text-foreground">{t("about.legal.accountName")}:</span>
+                    <span className="ml-2 text-muted-foreground">{t("about.legal.bali.company")}</span>
                   </div>
                   <div>
-                    <span className="font-medium text-foreground">{t("about.legal.rubAccount")}:</span>
-                    <span className="ml-2 font-mono text-muted-foreground">40807810300810005951</span>
+                    <span className="font-medium text-foreground">{t("about.legal.usdAccount")}:</span>
+                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.usdAccountValue")}</span>
                   </div>
-                </CollapsibleContent>
-              </Collapsible>
-            </CardContent>
-          </Card>
-
-          {/* Kyrgyzstan */}
-          <Card className="border-border/50">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <Building2 className="h-5 w-5" />
-                </div>
-                <div>
-                  <CardTitle className="text-lg">{t("about.legal.kyrgyzstan.title")}</CardTitle>
-                  <p className="text-sm text-muted-foreground">{t("about.legal.kyrgyzstan.company")}</p>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex items-start gap-3 text-sm">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                <div className="text-muted-foreground">
-                  <span className="font-medium text-foreground">{t("about.legal.kyrgyzstan.legalAddress")}:</span><br />
-                  {t("about.legal.kyrgyzstan.address")}
-                </div>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <Phone className="h-4 w-4 shrink-0 text-muted-foreground" />
-                <a href="tel:+996700707739" className="text-muted-foreground hover:text-foreground">
-                  +996-700-707-739
-                </a>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <Mail className="h-4 w-4 shrink-0 text-muted-foreground" />
-                <a href="mailto:help@forko-it.com" className="text-muted-foreground hover:text-foreground">
-                  help@forko-it.com
-                </a>
-              </div>
-
-              {/* Placeholder for Kyrgyzstan details */}
-              <Collapsible open={kgDetailsOpen} onOpenChange={setKgDetailsOpen}>
-                <CollapsibleTrigger asChild>
-                  <Button variant="ghost" size="sm" className="w-full justify-between mt-2">
-                    {t("about.legal.details")}
-                    <ChevronsUpDown className="h-4 w-4" />
-                  </Button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="mt-3 space-y-2 rounded-lg bg-muted/50 p-4 text-sm text-muted-foreground">
-                  <p>Forko IT Technologies LLC</p>
-                  <p>Kyrgyz Republic, Bishkek</p>
+                  <div>
+                    <span className="font-medium text-foreground">{t("about.legal.eurAccount")}:</span>
+                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.eurAccountValue")}</span>
+                  </div>
                 </CollapsibleContent>
               </Collapsible>
             </CardContent>

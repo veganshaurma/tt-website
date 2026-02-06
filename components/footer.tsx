@@ -26,7 +26,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2">
               <Logo className="h-9 w-9" />
               <span className="text-lg font-semibold tracking-tight text-foreground">
-                Forko IT
+                Dewata Global
               </span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
@@ -60,16 +60,11 @@ export function Footer() {
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="mailto:help@forko-it.com" className="transition-colors hover:text-foreground">
-                  help@forko-it.com
+                <a href="mailto:info@dewata-global.com" className="transition-colors hover:text-foreground">
+                  info@dewata-global.com
                 </a>
               </li>
-              <li>
-                <a href="tel:+996700707739" className="transition-colors hover:text-foreground">
-                  +996-700-707-739
-                </a>
-              </li>
-              <li>Hong Kong / Kyrgyzstan</li>
+              <li>Bali, Indonesia</li>
             </ul>
           </div>
         </div>
@@ -77,7 +72,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-border pt-8">
           <p className="text-center text-sm text-muted-foreground">
-            © {currentYear} Forko Information Technologies. {t("footer.rights")}
+            © {currentYear} PT Dewata Global Group. {t("footer.rights")}
           </p>
         </div>
       </div>

@@ -12,16 +12,120 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Section, SectionHeader } from "@/components/section"
 import { useI18n } from "@/lib/i18n"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+const countryCodes = [
+  { code: "+1", country: "US/CA", flag: "🇺🇸" },
+  { code: "+7", country: "RU/KZ", flag: "🇷🇺" },
+  { code: "+44", country: "UK", flag: "🇬🇧" },
+  { code: "+49", country: "DE", flag: "🇩🇪" },
+  { code: "+33", country: "FR", flag: "🇫🇷" },
+  { code: "+62", country: "ID", flag: "🇮🇩" },
+  { code: "+86", country: "CN", flag: "🇨🇳" },
+  { code: "+91", country: "IN", flag: "🇮🇳" },
+  { code: "+81", country: "JP", flag: "🇯🇵" },
+  { code: "+82", country: "KR", flag: "🇰🇷" },
+  { code: "+65", country: "SG", flag: "🇸🇬" },
+  { code: "+971", country: "AE", flag: "🇦🇪" },
+  { code: "+380", country: "UA", flag: "🇺🇦" },
+]
 
 export default function ContactsPage() {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const [submitted, setSubmitted] = useState(false)
   const [consent, setConsent] = useState(false)
+  const [countryCode, setCountryCode] = useState("+1")
+  const [customCode, setCustomCode] = useState("")
+  const [phone, setPhone] = useState("")
+  const isOther = countryCode === "other"
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!consent) return
-    setSubmitted(true)
+
+    const formData = new FormData(e.target as HTMLFormElement)
+    const data = {
+      name: formData.get('name'),
+      company: formData.get('company'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      message: formData.get('message'),
+      countryCode: isOther ? 'other' : countryCode,
+      customCode: isOther ? customCode : '',
+    }
+
+    try {
+      const response = await fetch('/api/send-contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+      } else {
+        alert('Failed to send message. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      alert('Failed to send message. Please try again.')
+    }
+  }
+
+  const formatPhoneNumber = (value: string) => {
+    // Remove all non-digits
+    const cleaned = value.replace(/\D/g, "")
+
+    // If "Other" is selected, don't apply any formatting
+    if (isOther) {
+      return value
+    }
+
+    // Apply different masks based on country code
+    if (countryCode === "+1") {
+      // US/Canada format: (XXX) XXX-XXXX
+      const match = cleaned.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/)
+      if (match) {
+        return [match[1], match[2], match[3]]
+          .filter(Boolean)
+          .join(" ")
+          .replace(/^(\d{3})/, "($1)")
+          .replace(/\) (\d{3})/, ") $1-")
+      }
+    } else if (countryCode === "+7") {
+      // Russia/Kazakhstan format: (XXX) XXX-XX-XX
+      const match = cleaned.match(/^(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})$/)
+      if (match) {
+        const parts = [match[1], match[2], match[3], match[4]].filter(Boolean)
+        let result = ""
+        if (parts[0]) result = `(${parts[0]})`
+        if (parts[1]) result += ` ${parts[1]}`
+        if (parts[2]) result += `-${parts[2]}`
+        if (parts[3]) result += `-${parts[3]}`
+        return result
+      }
+    } else {
+      // Default format: XXX XXX XXXX
+      const match = cleaned.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/)
+      if (match) {
+        return [match[1], match[2], match[3]].filter(Boolean).join(" ")
+      }
+    }
+
+    return cleaned
+  }
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhoneNumber(e.target.value)
+    setPhone(formatted)
   }
 
   return (
@@ -96,12 +200,67 @@ export default function ContactsPage() {
                           {t("contacts.form.phone")}{" "}
                           <span className="text-muted-foreground">({t("contacts.form.phoneOptional")})</span>
                         </Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          placeholder="+7 (___) ___-__-__"
-                        />
+                        <div className="flex gap-2">
+                          {isOther ? (
+                            <>
+                              <Input
+                                type="text"
+                                value={customCode}
+                                onChange={(e) => setCustomCode(e.target.value)}
+                                placeholder="+XX"
+                                className="w-[100px]"
+                                maxLength={5}
+                              />
+                              <Input
+                                id="phone"
+                                name="phone"
+                                type="tel"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                placeholder={locale === "ru" ? "Номер телефона" : "Phone number"}
+                                className="flex-1"
+                              />
+                            </>
+                          ) : (
+                            <>
+                              <Select value={countryCode} onValueChange={(value) => {
+                                setCountryCode(value)
+                                if (value !== "other") {
+                                  setPhone("")
+                                }
+                              }}>
+                                <SelectTrigger className="w-[140px]">
+                                  <SelectValue placeholder="Code" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {countryCodes.map((country) => (
+                                    <SelectItem key={country.code} value={country.code}>
+                                      <span className="flex items-center gap-2">
+                                        <span>{country.flag}</span>
+                                        <span>{country.code}</span>
+                                      </span>
+                                    </SelectItem>
+                                  ))}
+                                  <SelectItem value="other">
+                                    <span className="flex items-center gap-2">
+                                      <span>🌍</span>
+                                      <span>{locale === "ru" ? "Другая" : "Other"}</span>
+                                    </span>
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <Input
+                                id="phone"
+                                name="phone"
+                                type="tel"
+                                value={phone}
+                                onChange={handlePhoneChange}
+                                placeholder={countryCode === "+7" ? "(999) 999-99-99" : "(999) 999-9999"}
+                                className="flex-1"
+                              />
+                            </>
+                          )}
+                        </div>
                       </div>
                     </div>
 
@@ -137,11 +296,11 @@ export default function ContactsPage() {
             </Card>
           </div>
 
-          {/* Office Cards */}
+          {/* Office Card */}
           <div className="lg:col-span-2">
             <h2 className="mb-6 text-xl font-semibold text-foreground">{t("contacts.offices.title")}</h2>
             <div className="space-y-4">
-              {/* Hong Kong */}
+              {/* Bali */}
               <Card className="border-border/50">
                 <CardContent className="pt-6">
                   <div className="mb-4 flex items-center gap-3">
@@ -149,58 +308,19 @@ export default function ContactsPage() {
                       <Building2 className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground">{t("about.legal.hongKong.title")}</h3>
-                      <p className="text-sm text-muted-foreground">{t("about.legal.hongKong.company")}</p>
+                      <h3 className="font-semibold text-foreground">{t("about.legal.bali.title")}</h3>
+                      <p className="text-sm text-muted-foreground">{t("about.legal.bali.company")}</p>
                     </div>
                   </div>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-start gap-3">
                       <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                      <span className="text-muted-foreground">{t("about.legal.hongKong.address")}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Phone className="h-4 w-4 shrink-0 text-muted-foreground" />
-                      <a href="tel:+996700707739" className="text-muted-foreground hover:text-foreground">
-                        +996-700-707-739
-                      </a>
+                      <span className="text-muted-foreground">{t("about.legal.bali.address")}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <Mail className="h-4 w-4 shrink-0 text-muted-foreground" />
-                      <a href="mailto:help@forko-it.com" className="text-muted-foreground hover:text-foreground">
-                        help@forko-it.com
-                      </a>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Kyrgyzstan */}
-              <Card className="border-border/50">
-                <CardContent className="pt-6">
-                  <div className="mb-4 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Building2 className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground">{t("about.legal.kyrgyzstan.title")}</h3>
-                      <p className="text-sm text-muted-foreground">{t("about.legal.kyrgyzstan.company")}</p>
-                    </div>
-                  </div>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex items-start gap-3">
-                      <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                      <span className="text-muted-foreground">{t("about.legal.kyrgyzstan.address")}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Phone className="h-4 w-4 shrink-0 text-muted-foreground" />
-                      <a href="tel:+996700707739" className="text-muted-foreground hover:text-foreground">
-                        +996-700-707-739
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Mail className="h-4 w-4 shrink-0 text-muted-foreground" />
-                      <a href="mailto:help@forko-it.com" className="text-muted-foreground hover:text-foreground">
-                        help@forko-it.com
+                      <a href="mailto:info@dewata-global.com" className="text-muted-foreground hover:text-foreground">
+                        info@dewata-global.com
                       </a>
                     </div>
                   </div>

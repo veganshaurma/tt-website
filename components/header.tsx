@@ -31,7 +31,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2">
           <Logo className="h-9 w-9" />
           <span className="text-lg font-semibold tracking-tight text-foreground">
-            Forko IT
+            Dewata Global
           </span>
         </Link>
 

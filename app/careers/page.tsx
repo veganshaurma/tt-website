@@ -19,14 +19,145 @@ const benefits = [
   { icon: Laptop, key: "equipment" },
 ]
 
+const jobOpenings = {
+  ru: [
+    {
+      title: "Backend-разработчик (Python)",
+      level: "Middle",
+      employment: "Полная занятость",
+      location: "Удалённо",
+      requirements: {
+        title: "Требования:",
+        items: [
+          "Опыт разработки на Python 3+ года",
+          "Уверенное знание Django или FastAPI",
+          "Опыт работы с PostgreSQL, Redis",
+          "Проектирование и реализация REST API",
+          "Опыт работы с Docker и CI/CD",
+          "Английский: Intermediate+",
+        ],
+      },
+      bonus: {
+        title: "Будет плюсом:",
+        items: [
+          "Опыт асинхронного программирования (asyncio, aiohttp)",
+          "Знание Celery, RabbitMQ/Kafka",
+          "Опыт работы с AWS или GCP",
+        ],
+      },
+      applyText: "Откликнуться",
+    },
+    {
+      title: "Frontend-разработчик (React)",
+      level: "Senior",
+      employment: "Полная занятость",
+      location: "Удалённо",
+      requirements: {
+        title: "Требования:",
+        items: [
+          "Опыт разработки на React 5+ лет",
+          "Экспертное знание TypeScript, Next.js",
+          "State management (Redux, Zustand, React Query)",
+          "Современный CSS (Tailwind, CSS-in-JS)",
+          "Экспертиза в оптимизации производительности",
+          "Опыт руководства командой",
+          "Английский: Upper-Intermediate+",
+        ],
+      },
+      bonus: {
+        title: "Будет плюсом:",
+        items: [
+          "Опыт работы с GraphQL, tRPC",
+          "Знание React Native",
+          "Проекты в Web3/blockchain",
+        ],
+      },
+      applyText: "Откликнуться",
+    },
+  ],
+  en: [
+    {
+      title: "Backend Developer (Python)",
+      level: "Middle",
+      employment: "Full-time",
+      location: "Remote",
+      requirements: {
+        title: "Requirements:",
+        items: [
+          "3+ years of Python development experience",
+          "Strong knowledge of Django or FastAPI",
+          "Experience with PostgreSQL, Redis",
+          "REST API design and implementation",
+          "Experience with Docker and CI/CD",
+          "English: Intermediate+",
+        ],
+      },
+      bonus: {
+        title: "Nice to have:",
+        items: [
+          "Async programming experience (asyncio, aiohttp)",
+          "Knowledge of Celery, RabbitMQ/Kafka",
+          "Experience with AWS or GCP",
+        ],
+      },
+      applyText: "Apply",
+    },
+    {
+      title: "Frontend Developer (React)",
+      level: "Senior",
+      employment: "Full-time",
+      location: "Remote",
+      requirements: {
+        title: "Requirements:",
+        items: [
+          "5+ years of React development experience",
+          "Expert knowledge of TypeScript, Next.js",
+          "State management (Redux, Zustand, React Query)",
+          "Modern CSS (Tailwind, CSS-in-JS)",
+          "Performance optimization expertise",
+          "Team leadership experience",
+          "English: Upper-Intermediate+",
+        ],
+      },
+      bonus: {
+        title: "Nice to have:",
+        items: [
+          "Experience with GraphQL, tRPC",
+          "React Native knowledge",
+          "Web3/blockchain projects",
+        ],
+      },
+      applyText: "Apply",
+    },
+  ],
+}
+
 export default function CareersPage() {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const [submitted, setSubmitted] = useState(false)
   const [fileName, setFileName] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+
+    const form = e.target as HTMLFormElement
+    const formData = new FormData(form)
+
+    try {
+      const response = await fetch('/api/send-resume', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+      } else {
+        alert('Failed to send application. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      alert('Failed to send application. Please try again.')
+    }
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,95 +220,54 @@ export default function CareersPage() {
 
       {/* Open Positions */}
       <Section>
-        <SectionHeader 
-          title={t("careers.openings.title")} 
+        <SectionHeader
+          title={t("careers.openings.title")}
           description={t("careers.openings.description")}
         />
         <div className="grid gap-6 md:grid-cols-2">
-          {/* Backend Python Middle */}
-          <Card className="border-border/50 hover:border-primary/50 transition-colors">
-            <CardHeader>
-              <CardTitle className="text-xl">Backend-разработчик (Python)</CardTitle>
-              <div className="flex flex-wrap gap-2 mt-2">
-                <span className="inline-flex items-center rounded-md bg-blue-50 dark:bg-blue-950 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-700/10 dark:ring-blue-300/20">
-                  Middle
-                </span>
-                <span className="inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 ring-1 ring-inset ring-gray-500/10">
-                  Полная занятость
-                </span>
-                <span className="inline-flex items-center rounded-md bg-green-50 dark:bg-green-950 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-600/20">
-                  Удалённо
-                </span>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-sm text-foreground mb-2">Требования:</h4>
-                <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-                  <li>Опыт разработки на Python 3+ года</li>
-                  <li>Уверенное знание Django или FastAPI</li>
-                  <li>Опыт работы с PostgreSQL, Redis</li>
-                  <li>Проектирование и реализация REST API</li>
-                  <li>Опыт работы с Docker и CI/CD</li>
-                  <li>Английский: Intermediate+</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-sm text-foreground mb-2">Будет плюсом:</h4>
-                <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-                  <li>Опыт асинхронного программирования (asyncio, aiohttp)</li>
-                  <li>Знание Celery, RabbitMQ/Kafka</li>
-                  <li>Опыт работы с AWS или GCP</li>
-                </ul>
-              </div>
-              <Button className="w-full mt-4" asChild>
-                <a href="#application-form">Откликнуться</a>
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Frontend React Senior */}
-          <Card className="border-border/50 hover:border-primary/50 transition-colors">
-            <CardHeader>
-              <CardTitle className="text-xl">Frontend-разработчик (React)</CardTitle>
-              <div className="flex flex-wrap gap-2 mt-2">
-                <span className="inline-flex items-center rounded-md bg-purple-50 dark:bg-purple-950 px-2 py-1 text-xs font-medium text-purple-700 dark:text-purple-300 ring-1 ring-inset ring-purple-700/10 dark:ring-purple-300/20">
-                  Senior
-                </span>
-                <span className="inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 ring-1 ring-inset ring-gray-500/10">
-                  Полная занятость
-                </span>
-                <span className="inline-flex items-center rounded-md bg-green-50 dark:bg-green-950 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-600/20">
-                  Удалённо
-                </span>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-sm text-foreground mb-2">Требования:</h4>
-                <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-                  <li>Опыт разработки на React 5+ лет</li>
-                  <li>Экспертное знание TypeScript, Next.js</li>
-                  <li>State management (Redux, Zustand, React Query)</li>
-                  <li>Современный CSS (Tailwind, CSS-in-JS)</li>
-                  <li>Экспертиза в оптимизации производительности</li>
-                  <li>Опыт руководства командой</li>
-                  <li>Английский: Upper-Intermediate+</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-sm text-foreground mb-2">Будет плюсом:</h4>
-                <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-                  <li>Опыт работы с GraphQL, tRPC</li>
-                  <li>Знание React Native</li>
-                  <li>Проекты в Web3/blockchain</li>
-                </ul>
-              </div>
-              <Button className="w-full mt-4" asChild>
-                <a href="#application-form">Откликнуться</a>
-              </Button>
-            </CardContent>
-          </Card>
+          {jobOpenings[locale].map((job, index) => (
+            <Card key={index} className="border-border/50 hover:border-primary/50 transition-colors">
+              <CardHeader>
+                <CardTitle className="text-xl">{job.title}</CardTitle>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${
+                    job.level === "Senior" || job.level === "Старший"
+                      ? "bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300 ring-purple-700/10 dark:ring-purple-300/20"
+                      : "bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 ring-blue-700/10 dark:ring-blue-300/20"
+                  }`}>
+                    {job.level}
+                  </span>
+                  <span className="inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 ring-1 ring-inset ring-gray-500/10">
+                    {job.employment}
+                  </span>
+                  <span className="inline-flex items-center rounded-md bg-green-50 dark:bg-green-950 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-600/20">
+                    {job.location}
+                  </span>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-sm text-foreground mb-2">{job.requirements.title}</h4>
+                  <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                    {job.requirements.items.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm text-foreground mb-2">{job.bonus.title}</h4>
+                  <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                    {job.bonus.items.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <Button className="w-full mt-4" asChild>
+                  <a href="#application-form">{job.applyText}</a>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </Section>
 
