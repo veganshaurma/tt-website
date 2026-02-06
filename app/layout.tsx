@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   generator: 'v0.app',
   keywords: ['IT-решения', 'разработка приложений', 'веб-разработка', 'мобильная разработка', 'IT-консалтинг', 'Telegram боты'],
   authors: [{ name: 'Dewata Global Group' }],
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: 'Dewata Global Group — Надёжные IT-решения для бизнеса',
     description: 'Разрабатываем веб- и мобильные приложения, Telegram-ботов, консультируем по IT-стратегии и обеспечиваем инфраструктуру.',
