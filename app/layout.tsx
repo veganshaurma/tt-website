@@ -11,21 +11,21 @@ const _inter = Inter({ subsets: ["latin", "cyrillic"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Dewata Global Group — Надёжные IT-решения для бизнеса',
-  description: 'Разрабатываем веб- и мобильные приложения, Telegram-ботов, консультируем по IT-стратегии и обеспечиваем инфраструктуру для компаний в России, СНГ, Азии и Европе.',
+  title: 'Dewata Global Group — Reliable IT Solutions for Business',
+  description: 'We develop web and mobile applications, Telegram bots, provide IT strategy consulting, and deliver infrastructure solutions for companies in Russia, CIS, Asia, and Europe.',
   generator: 'v0.app',
-  keywords: ['IT-решения', 'разработка приложений', 'веб-разработка', 'мобильная разработка', 'IT-консалтинг', 'Telegram боты'],
+  keywords: ['IT solutions', 'app development', 'web development', 'mobile development', 'IT consulting', 'Telegram bots', 'software development', 'enterprise solutions'],
   authors: [{ name: 'Dewata Global Group' }],
   icons: {
     icon: '/icon.svg',
     apple: '/icon.svg',
   },
   openGraph: {
-    title: 'Dewata Global Group — Надёжные IT-решения для бизнеса',
-    description: 'Разрабатываем веб- и мобильные приложения, Telegram-ботов, консультируем по IT-стратегии и обеспечиваем инфраструктуру.',
+    title: 'Dewata Global Group — Reliable IT Solutions for Business',
+    description: 'We develop web and mobile applications, Telegram bots, provide IT strategy consulting, and deliver infrastructure solutions.',
     type: 'website',
-    locale: 'ru_RU',
-    alternateLocale: 'en_US',
+    locale: 'en_US',
+    alternateLocale: 'ru_RU',
   },
 }
 
@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ru">
+    <html lang="en">
       <body className="font-sans antialiased">
         <I18nProvider>
           <div className="flex min-h-screen flex-col">

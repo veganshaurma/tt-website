@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-
+import Link from "next/link"
 import { useState } from "react"
 import { Building2, Phone, Mail, MapPin, CheckCircle } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -283,7 +283,11 @@ export default function ContactsPage() {
                         aria-describedby="consent-label"
                       />
                       <Label htmlFor="consent" id="consent-label" className="text-sm font-normal text-muted-foreground cursor-pointer">
-                        {t("contacts.form.consent")} *
+                        {t("contacts.form.consent")}{" "}
+                        <Link href="/privacy-policy" target="_blank" className="text-primary hover:underline">
+                          {t("contacts.form.consentLink")}
+                        </Link>{" "}
+                        *
                       </Label>
                     </div>
 
