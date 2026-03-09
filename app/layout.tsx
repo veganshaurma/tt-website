@@ -11,18 +11,18 @@ const _inter = Inter({ subsets: ["latin", "cyrillic"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Dewata Global Group — Reliable IT Solutions for Business',
-  description: 'We develop web and mobile applications, Telegram bots, provide IT strategy consulting, and deliver infrastructure solutions for companies in Russia, CIS, Asia, and Europe.',
+  title: 'ТТ АС — Надёжные IT-решения для бизнеса',
+  description: 'Разрабатываем веб и мобильные приложения, Telegram-боты, оказываем консалтинг в области IT-стратегии и инфраструктурные решения для компаний в России, СНГ и Европе.',
   generator: 'v0.app',
-  keywords: ['IT solutions', 'app development', 'web development', 'mobile development', 'IT consulting', 'Telegram bots', 'software development', 'enterprise solutions'],
-  authors: [{ name: 'Dewata Global Group' }],
+  keywords: ['IT решения', 'разработка приложений', 'веб разработка', 'мобильная разработка', 'IT консалтинг', 'Telegram боты', 'разработка программного обеспечения', 'корпоративные решения'],
+  authors: [{ name: 'ООО ТОРГОВЫЕ ТЕХНОЛОГИИ АС' }],
   icons: {
     icon: '/icon.svg',
     apple: '/icon.svg',
   },
   openGraph: {
-    title: 'Dewata Global Group — Reliable IT Solutions for Business',
-    description: 'We develop web and mobile applications, Telegram bots, provide IT strategy consulting, and deliver infrastructure solutions.',
+    title: 'ТТ АС — Надёжные IT-решения для бизнеса',
+    description: 'Разрабатываем веб и мобильные приложения, Telegram-боты, оказываем консалтинг в области IT-стратегии и инфраструктурные решения.',
     type: 'website',
     locale: 'en_US',
     alternateLocale: 'ru_RU',

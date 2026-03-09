@@ -137,27 +137,9 @@ export default function CareersPage() {
   const [submitted, setSubmitted] = useState(false)
   const [fileName, setFileName] = useState<string | null>(null)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-
-    const form = e.target as HTMLFormElement
-    const formData = new FormData(form)
-
-    try {
-      const response = await fetch('/api/send-resume', {
-        method: 'POST',
-        body: formData,
-      })
-
-      if (response.ok) {
-        setSubmitted(true)
-      } else {
-        alert('Failed to send application. Please try again.')
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-      alert('Failed to send application. Please try again.')
-    }
+    setSubmitted(true)
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

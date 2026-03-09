@@ -26,7 +26,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2">
               <Logo className="h-9 w-9" />
               <span className="text-lg font-semibold tracking-tight text-foreground">
-                Dewata Global
+                Торговые Технологии АС
               </span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
@@ -60,11 +60,11 @@ export function Footer() {
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="mailto:info@dewata-global.com" className="transition-colors hover:text-foreground">
-                  info@dewata-global.com
+                <a href="mailto:info@ptsfs.tech" className="transition-colors hover:text-foreground">
+                  info@ptsfs.tech
                 </a>
               </li>
-              <li>Bali, Indonesia</li>
+              <li>Москва, Россия</li>
             </ul>
           </div>
         </div>
@@ -72,7 +72,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-border pt-8">
           <p className="text-center text-sm text-muted-foreground">
-            © {currentYear} PT Dewata Global Group. {t("footer.rights")}
+            © {currentYear} ООО «ТОРГОВЫЕ ТЕХНОЛОГИИ АС». {t("footer.rights")}
           </p>
         </div>
       </div>

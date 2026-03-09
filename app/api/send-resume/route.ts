@@ -24,8 +24,8 @@ export async function POST(request: NextRequest) {
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: 'Dewata Global Website <noreply@dewata-global.com>',
-      to: ['info@dewata-global.com'],
+      from: 'ТТ АС Website <noreply@ptsfs.tech>',
+      to: ['info@ptsfs.tech'],
       subject: `New Resume Submission: ${role} - ${name}`,
       html: `
         <h2>New Resume Submission</h2>

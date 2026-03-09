@@ -45,39 +45,10 @@ export default function ContactsPage() {
   const [phone, setPhone] = useState("")
   const isOther = countryCode === "other"
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!consent) return
-
-    const formData = new FormData(e.target as HTMLFormElement)
-    const data = {
-      name: formData.get('name'),
-      company: formData.get('company'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      message: formData.get('message'),
-      countryCode: isOther ? 'other' : countryCode,
-      customCode: isOther ? customCode : '',
-    }
-
-    try {
-      const response = await fetch('/api/send-contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-
-      if (response.ok) {
-        setSubmitted(true)
-      } else {
-        alert('Failed to send message. Please try again.')
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-      alert('Failed to send message. Please try again.')
-    }
+    setSubmitted(true)
   }
 
   const formatPhoneNumber = (value: string) => {
@@ -312,19 +283,19 @@ export default function ContactsPage() {
                       <Building2 className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground">{t("about.legal.bali.title")}</h3>
-                      <p className="text-sm text-muted-foreground">{t("about.legal.bali.company")}</p>
+                      <h3 className="font-semibold text-foreground">ООО «Торговые Технологии АС»</h3>
+                      <p className="text-sm text-muted-foreground">Москва, Россия</p>
                     </div>
                   </div>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-start gap-3">
                       <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                      <span className="text-muted-foreground">{t("about.legal.bali.address")}</span>
+                      <span className="text-muted-foreground">Москва, Россия</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <Mail className="h-4 w-4 shrink-0 text-muted-foreground" />
-                      <a href="mailto:info@dewata-global.com" className="text-muted-foreground hover:text-foreground">
-                        info@dewata-global.com
+                      <a href="mailto:info@ptsfs.tech" className="text-muted-foreground hover:text-foreground">
+                        info@ptsfs.tech
                       </a>
                     </div>
                   </div>

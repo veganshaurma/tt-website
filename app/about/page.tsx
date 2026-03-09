@@ -131,20 +131,16 @@ export default function AboutPage() {
                   <Building2 className="h-5 w-5" />
                 </div>
                 <div>
-                  <CardTitle className="text-lg">{t("about.legal.bali.title")}</CardTitle>
-                  <p className="text-sm text-muted-foreground">{t("about.legal.bali.company")}</p>
+                  <CardTitle className="text-lg">{t("about.legal.title")}</CardTitle>
+                  <p className="text-sm text-muted-foreground">{t("about.legal.company")}</p>
                 </div>
               </div>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="flex items-start gap-3 text-sm">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                <span className="text-muted-foreground">{t("about.legal.bali.address")}</span>
-              </div>
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="h-4 w-4 shrink-0 text-muted-foreground" />
-                <a href="mailto:info@dewata-global.com" className="text-muted-foreground hover:text-foreground">
-                  info@dewata-global.com
+                <a href="mailto:info@ptsfs.tech" className="text-muted-foreground hover:text-foreground">
+                  info@ptsfs.tech
                 </a>
               </div>
 
@@ -158,40 +154,28 @@ export default function AboutPage() {
                 </CollapsibleTrigger>
                 <CollapsibleContent className="mt-3 space-y-2 rounded-lg bg-muted/50 p-4 text-sm">
                   <div>
-                    <span className="font-medium text-foreground">{t("about.legal.director")}:</span>
-                    <span className="ml-2 text-muted-foreground">{t("about.legal.bali.directorName")}</span>
+                    <span className="font-medium text-foreground">{t("about.legal.inn")}:</span>
+                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.innValue")}</span>
+                  </div>
+                  <div>
+                    <span className="font-medium text-foreground">{t("about.legal.kpp")}:</span>
+                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.kppValue")}</span>
                   </div>
                   <div className="pt-2 border-t border-border">
                     <span className="font-medium text-foreground">{t("about.legal.bank")}:</span>
                     <span className="ml-2 text-muted-foreground">{t("about.legal.bankName")}</span>
                   </div>
                   <div>
-                    <span className="font-medium text-foreground">{t("about.legal.bankBranch")}:</span>
-                    <span className="ml-2 text-muted-foreground">{t("about.legal.bankBranchValue")}</span>
+                    <span className="font-medium text-foreground">{t("about.legal.account")}:</span>
+                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.accountValue")}</span>
                   </div>
                   <div>
-                    <span className="font-medium text-foreground">{t("about.legal.bankAddress")}:</span>
-                    <span className="ml-2 text-muted-foreground">{t("about.legal.bankAddressValue")}</span>
+                    <span className="font-medium text-foreground">{t("about.legal.corrAccount")}:</span>
+                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.corrAccountValue")}</span>
                   </div>
                   <div>
-                    <span className="font-medium text-foreground">{t("about.legal.bankClearingCode")}:</span>
-                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.bankClearingCodeValue")}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium text-foreground">{t("about.legal.swiftCode")}:</span>
-                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.swiftCodeValue")}</span>
-                  </div>
-                  <div className="pt-2 border-t border-border">
-                    <span className="font-medium text-foreground">{t("about.legal.accountName")}:</span>
-                    <span className="ml-2 text-muted-foreground">{t("about.legal.bali.company")}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium text-foreground">{t("about.legal.usdAccount")}:</span>
-                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.usdAccountValue")}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium text-foreground">{t("about.legal.eurAccount")}:</span>
-                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.eurAccountValue")}</span>
+                    <span className="font-medium text-foreground">{t("about.legal.bik")}:</span>
+                    <span className="ml-2 font-mono text-muted-foreground">{t("about.legal.bikValue")}</span>
                   </div>
                 </CollapsibleContent>
               </Collapsible>

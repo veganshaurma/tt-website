@@ -27,7 +27,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       ctaSecondary: "Наши услуги",
     },
     whyUs: {
-      title: "Почему Dewata Global Group",
+      title: "Почему Торговые Технологии АС",
       subtitle: "Ориентируемся на качество, открытую коммуникацию и стабильное сотрудничество",
       sla: {
         title: "Контроль сроков",
@@ -240,32 +240,23 @@ const dictionaries: Record<Locale, Dictionary> = {
       },
       legal: {
         title: "Юридическое лицо",
-        subtitle: "Зарегистрированная компания в Индонезии",
+        subtitle: "Зарегистрированная компания в России",
         details: "Реквизиты",
-        bali: {
-          title: "Индонезия",
-          company: "PT Dewata Global Group",
-          address: "Jl. Dewi Saraswati No.22, Kerobokan Kelod, Kec. Kuta Utara, Kabupaten Badung, Bali 80361",
-          director: "Директор",
-          directorName: "Mr. Bambang Irianto",
-        },
+        company: 'ООО "ТОРГОВЫЕ ТЕХНОЛОГИИ АС"',
+        inn: "ИНН",
+        innValue: "9727033037",
+        kpp: "КПП",
+        kppValue: "772701001",
         phone: "Телефон",
         email: "Email",
         bank: "Банк",
-        bankName: "PT. BANK MANDIRI (PERSERO) Tbk",
-        bankBranch: "Отделение банка",
-        bankBranchValue: "KCP Kerobokan",
-        bankAddress: "Адрес банка",
-        bankAddressValue: "Jalan Raya Kerobokan No. 104 Kuta Utara 80361",
-        bankClearingCode: "Код банка",
-        bankClearingCodeValue: "008-3292",
-        swiftCode: "SWIFT код",
-        swiftCodeValue: "BMRIIDJA",
-        accountName: "Владелец счета",
-        usdAccount: "Счёт USD",
-        usdAccountValue: "1750002363876",
-        eurAccount: "Счёт EUR",
-        eurAccountValue: "1750002363868",
+        bankName: 'ФИЛИАЛ "ЦЕНТРАЛЬНЫЙ" БАНКА ВТБ (ПАО)',
+        account: "Счёт",
+        accountValue: "40702810000810115398",
+        corrAccount: "Корр. счёт",
+        corrAccountValue: "30101810145250000411",
+        bik: "БИК",
+        bikValue: "044525411",
       },
     },
     careers: {
@@ -369,7 +360,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       ctaSecondary: "Our Services",
     },
     whyUs: {
-      title: "Why Dewata Global Group",
+      title: "Why Trading Technologies AS",
       subtitle: "We prioritize quality, open communication, and stable collaboration",
       sla: {
         title: "Time Control",
@@ -582,32 +573,23 @@ const dictionaries: Record<Locale, Dictionary> = {
       },
       legal: {
         title: "Legal Entity",
-        subtitle: "Registered company in Indonesia",
+        subtitle: "Registered company in Russia",
         details: "Details",
-        bali: {
-          title: "Indonesia",
-          company: "PT Dewata Global Group",
-          address: "Jl. Dewi Saraswati No.22, Kerobokan Kelod, Kec. Kuta Utara, Kabupaten Badung, Bali 80361",
-          director: "Director",
-          directorName: "Mr. Bambang Irianto",
-        },
+        company: 'LLC "TRADING TECHNOLOGIES AS"',
+        inn: "INN",
+        innValue: "9727033037",
+        kpp: "KPP",
+        kppValue: "772701001",
         phone: "Phone",
         email: "Email",
         bank: "Bank",
-        bankName: "PT. BANK MANDIRI (PERSERO) Tbk",
-        bankBranch: "Bank Branch",
-        bankBranchValue: "KCP Kerobokan",
-        bankAddress: "Bank address",
-        bankAddressValue: "Jalan Raya Kerobokan No. 104 Kuta Utara 80361",
-        bankClearingCode: "Bank Clearing Code",
-        bankClearingCodeValue: "008-3292",
-        swiftCode: "SWIFT code",
-        swiftCodeValue: "BMRIIDJA",
-        accountName: "Account name",
-        usdAccount: "USD account",
-        usdAccountValue: "1750002363876",
-        eurAccount: "EUR account",
-        eurAccountValue: "1750002363868",
+        bankName: 'BRANCH "CENTRAL" OF VTB BANK (PJSC)',
+        account: "Account",
+        accountValue: "40702810000810115398",
+        corrAccount: "Corr. account",
+        corrAccountValue: "30101810145250000411",
+        bik: "BIK",
+        bikValue: "044525411",
       },
     },
     careers: {
@@ -718,7 +700,7 @@ type I18nContextType = {
 const I18nContext = createContext<I18nContextType | null>(null)
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en")
+  const [locale, setLocaleState] = useState<Locale>("ru")
 
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale)
