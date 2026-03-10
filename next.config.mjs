@@ -2,7 +2,6 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  basePath: '/tt-website',
   typescript: {
     ignoreBuildErrors: true,
   },
